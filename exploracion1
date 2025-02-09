@@ -1,0 +1,31 @@
+import matplotlib
+import matplotlib.pyplot as plt
+import librosa
+import librosa.display
+import numpy as np
+import IPython
+from scipy.io import wavfile
+from scipy.fft import fftshift
+
+fs, audioEnfermo = wavfile.read('C:\\Users\\USUARIO\\.cache\\kagglehub\\datasets\\vbookshelf\\respiratory-sound-database\\versions\\2\\Respiratory_Sound_Database\\Respiratory_Sound_Database\\audio_and_txt_files\\101_1b1_Al_sc_Meditron.wav')
+fs, audioSano = wavfile.read('C:\\Users\\USUARIO\\.cache\kagglehub\\datasets\\vbookshelf\\respiratory-sound-database\\versions\\2\\Respiratory_Sound_Database\\Respiratory_Sound_Database\\audio_and_txt_files\\102_1b1_Ar_sc_Meditron.wav') 
+
+IPython.display.Audio(audioSano, rate=fs)
+
+fig, ax = plt.subplots(2, 1, figsize=(12, 6))
+fig.patch.set_facecolor('white')
+
+Pxx, freqs, bins, im = ax[0].specgram(audioSano, NFFT=1024, Fs=fs, noverlap=512)
+ax[0].set_title('Audio de persona sana. Espectograma')
+ax[0].set_xlabel('Tiempo [s]')
+ax[0].set_ylabel('Amplitud [Hz]')
+ax[0].grid(False)
+
+Pxx, freqs, bins, im = ax[1].specgram(audioEnfermo, NFFT=1024, Fs=fs, noverlap=512)
+ax[1].set_title('Audio de persona enferma. Espectograma')
+ax[1].set_xlabel('Tiempo [s]')
+ax[1].set_ylabel('Amplitud [Hz]')
+ax[1].grid(False)
+
+plt.tight_layout()
+plt.show();
