@@ -1,0 +1,18 @@
+import librosa
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# Carga de datos de Audio
+X, sample_rate = librosa.load('C:\\Users\\USUARIO\\.cache\\kagglehub\\datasets\\vbookshelf\\respiratory-sound-database\\versions\\2\\Respiratory_Sound_Database\\Respiratory_Sound_Database\\audio_and_txt_files\\101_1b1_Al_sc_Meditron.wav')
+# Aca se cambiaria el path, hacia donde se este guardando la base de datos con los audios
+
+t = np.linspace(0, 441000/22050, 441000)  
+
+sig = X
+plt.title("Grafica de la señal de audio")
+plt.plot(t, sig)
+plt.xlabel('Tiempo [s]')
+plt.ylabel('Amplitud')
+plt.show()
